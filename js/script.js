@@ -26,7 +26,7 @@ function reload() {
     thimgtwo.src = "img/delete-svgrepo-com.svg"
     thname.innerHTML = inputname.value
     thage.innerHTML = inputage.value
-
+    thnum.innerHTML = mass.length 
 
     tbody.append(tr)
     tr.append(thnum, thname, thage, thaction)
@@ -34,7 +34,8 @@ function reload() {
 
 
     thimgtwo.onclick = () => {
-        tr.remove()
+        dataBase = dataBase.filter(el => el.id !== item.id)
+            tr.remove()
     }
     thimgone.onclick = () => {
         modal.style.display = 'flex'
@@ -76,14 +77,22 @@ function reload() {
 let err = false
 
 form.onsubmit = (event) => {
-    event.preventDefault();
-    if (inputage.value === Number) {
 
+    event.preventDefault();
+    let obj = {
+        id: Math.floor(Math.random() * 100) + 1,
+        num: mass.length + 1,
+        name: inputname.value,
+        age: inputage.value
     }
-    if (err === false) {
-        submit()
+
+    if (inputname.value.length !== 0 && inputage.value.length !== 0) {
+        mass.push(obj)
     }
+    console.log(mass);
+    reload()
 }
+
 
 
 
